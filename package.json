@@ -1,0 +1,11 @@
+{
+  "name": "techbookfest5",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/GoodCodingFriends/techbookfest5",
+  "author": "ktr0731 <ktr@syfm.me>",
+  "license": "MIT",
+  "dependencies": {
+    "vue": "^2.5.17"
+  }
+}
