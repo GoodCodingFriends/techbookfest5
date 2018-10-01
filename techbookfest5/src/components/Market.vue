@@ -108,10 +108,10 @@ export default {
     .border {
         display: flex;
         align-items: center;
+        text-align: right;
     }
 
-    .border::before,
-    .border::after {
+    .border::before {
         border-top: 1px solid #ccc;
         content: '';
         flex-grow: 1;
@@ -121,7 +121,4 @@ export default {
         margin-right: 1.5rem;
     }
 
-    .border::after {
-        margin-left: 1.5rem;
-    }
 </style>
