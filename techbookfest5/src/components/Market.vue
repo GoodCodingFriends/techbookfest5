@@ -1,14 +1,14 @@
 <template>
   <div class="market">
-      <h2 class="border">{{ name }}</h2>
+      <h2 class="border">{{ name }} ({{ place }})</h2>
       <div
               class="book"
               v-for="book in books"
               :key="book.name"
       >
-          <img class="cover" :src="book.coverName" />
+          <a :href="url"><img class="cover" :src="book.coverName" /></a>
           <div class="detail">
-              <h3>{{ book.name}}</h3>
+              <h3><a :href="url">{{ book.name}}</a></h3>
               <div>
                   <p class="description">{{ book.description }}</p>
               </div>
@@ -31,6 +31,8 @@ export default {
   data() {
       return {
           name: "技術書典 5",
+          place: "う11",
+          url: "//techbookfest.org/event/tbf05/circle/26840001",
           books: [
               {
                   name: "Go & Kotlin Playground",
@@ -61,9 +63,13 @@ export default {
     @font-face {
         src: url("/fonts/nexa-bold.otf") format("otf"), url("/fonts/nexa-light.otf") format("otf");
     }
+    a {
+      width: 50%;
+      height: 50%;
+    }
   .cover {
-      width: 30%;
-      height: 30%;
+      width: 100%;
+      height: 100%;
   }
 
     .market {
@@ -91,6 +97,11 @@ export default {
         font-family: "Nexa Bold";
         font-size: 3rem;
         color: #232a53;
+    }
+
+    .detail > h3 > a {
+        text-decoration: none;
+        color: inherit;
     }
 
     ul {
