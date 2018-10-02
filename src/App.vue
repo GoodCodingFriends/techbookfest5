@@ -30,7 +30,7 @@ export default {
               name: "Go & Kotlin Playground",
               coverName: "go-and-kotlin-playground.png",
               description:
-                "Go アプリケーションに関する設計や、Go 製ツールの話、Kotlin のチートシートなど、GCF メンバーそれぞれの知見集です。",
+                "Go と Kotlin に関する本です。Go アプリケーション設計や、Go 製ツールの話、Docker、Kotlin のチートシートなど、GCF メンバーそれぞれの知見を集めています。",
               chapters: [
                 {
                   title: "gRPC Web Internals",
@@ -39,6 +39,20 @@ export default {
                 {
                   title: "やはり俺の Go アプリケーション設計はまちがっている。",
                   author: "ktr_0731"
+                },
+                {
+                  title: "FUSE で HackMD FS を作って完璧なメモ環境を整える",
+                  author: "acomagu"
+                },
+                {
+                  title:
+                    "go-ethereum が入っているアプリケーションを Docker コンテナにしたい",
+                  author: "Yamashou0314"
+                },
+                {
+                  title:
+                    "私が調べた Images API で生成される Serving URL の画像機能チートシート",
+                  author: "Yamashou0314"
                 },
                 {
                   title: "My Kotlin Cheat Sheet",
