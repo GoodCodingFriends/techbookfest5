@@ -46,12 +46,12 @@ export default {
                 },
                 {
                   title:
-                    "go-ethereum が入っているアプリケーションを Docker コンテナにしたい",
+                    "go-ethereum が入っているアプリケーションの Dockerize",
                   author: "Yamashou0314"
                 },
                 {
                   title:
-                    "私が調べた Images API で生成される Serving URL の画像機能チートシート",
+                    "GAE Images API で生成される Serving URL の画像機能チートシート",
                   author: "Yamashou0314"
                 },
                 {
