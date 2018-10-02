@@ -1,12 +1,12 @@
 <template>
     <div class="market"
          :class="{ isMobile: isMobile, isTablet: isTablet, isDesktop: isDesktop }">
-        <h2 class="border">{{ name }} ({{ place }})</h2>
+        <h2 class="border">{{ market.name }} ({{ market.place }})</h2>
         <div
-                v-for="book in books"
+                v-for="book in market.books"
                 :key="book.name"
                 class="book" >
-            <a :href="url"><img class="cover" :src="book.coverName"/></a>
+            <a :href="market.url"><img class="cover" :src="book.coverName"/></a>
             <div class="detail">
                 <h3><a :href="url">{{ book.name}}</a></h3>
                 <div>
@@ -38,39 +38,12 @@ function isMobile() {
 
 export default {
   name: "Market",
-  props: {
-    msg: String
-  },
+  props: ["market"],
   data() {
     return {
       isDesktop: isDesktop(),
       isTablet: isTablet(),
-      isMobile: isMobile(),
-      name: "技術書典 5",
-      place: "う11",
-      url: "//techbookfest.org/event/tbf05/circle/26840001",
-      books: [
-        {
-          name: "Go & Kotlin Playground",
-          coverName: "go-and-kotlin-playground.png",
-          description:
-            "Go アプリケーションに関する設計や、Go 製ツールの話、Kotlin のチートシートなど、GCF メンバーそれぞれの知見集です。",
-          chapters: [
-            {
-              title: "gRPC Web Internals",
-              author: "ktr_0731"
-            },
-            {
-              title: "やはり俺の Go アプリケーション設計はまちがっている。",
-              author: "ktr_0731"
-            },
-            {
-              title: "My Kotlin Cheat Sheet",
-              author: "slme_not_found"
-            }
-          ]
-        }
-      ]
+      isMobile: isMobile()
     };
   },
   mounted: function() {
@@ -132,11 +105,11 @@ a {
   font-family: "Nexa Bold";
   font-size: 3rem;
   color: #232a53;
-    transition: all 0.2s;
+  transition: all 0.2s;
 }
 
 .detail > h3:hover {
-    color: #5F6A9F;
+  color: #5f6a9f;
 }
 
 .detail > h3 > a {
