@@ -1,17 +1,19 @@
 <template>
   <div id="app">
     <h1>GCF Lab</h1>
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Market/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/Market.vue'
+import Market from './components/Market.vue'
+import Media from 'vue-media'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    Market,
+    Media,
   }
 }
 </script>

@@ -2,9 +2,10 @@
   <div class="market">
       <h2 class="border">{{ name }} ({{ place }})</h2>
       <div
-              class="book"
+              :class="{ isMobile: isMobile, isTablet: isTablet, isDesktop: isDesktop }"
               v-for="book in books"
               :key="book.name"
+              class="book"
       >
           <a :href="url"><img class="cover" :src="book.coverName" /></a>
           <div class="detail">
@@ -23,13 +24,28 @@
 </template>
 
 <script>
+function isDesktop() {
+    return 768 < window.innerWidth;
+}
+
+function isTablet() {
+    return 400 < window.innerWidth && window.innerWidth <= 768;
+}
+
+function isMobile() {
+    return window.innerWidth <= 400;
+}
+
 export default {
-  name: 'HelloWorld',
+  name: 'Market',
   props: {
     msg: String
   },
   data() {
       return {
+          isDesktop: isDesktop(),
+          isTablet:  isTablet(),
+          isMobile: isMobile(),
           name: "技術書典 5",
           place: "う11",
           url: "//techbookfest.org/event/tbf05/circle/26840001",
@@ -55,6 +71,21 @@ export default {
               }
           ]
       }
+  },
+  mounted: function () {
+      this.$nextTick(() => {
+          window.addEventListener('resize', this.handleResize);
+      });
+  },
+  beforeDestroy: function () {
+      window.removeEventListener('resize', this.handleResize);
+  },
+  methods: {
+    handleResize () {
+        this.isDesktop = isDesktop();
+        this.isTablet = isTablet();
+        this.isMobile = isMobile();
+    }
   }
 }
 </script>
@@ -77,7 +108,7 @@ export default {
         font-family: Helvetica, Arial, sans-serif;
     }
 
-    .book {
+    .isDesktop.book {
         display: flex;
         align-items: center;
     }
@@ -132,4 +163,12 @@ export default {
         margin-right: 1.5rem;
     }
 
+    .isTablet.book,
+    .isMobile.book {
+        display: block;
+    }
+
+    .isTablet.book .cover {
+        width: 60%;
+    }
 </style>
