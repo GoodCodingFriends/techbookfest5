@@ -1,177 +1,198 @@
 <template>
-  <div class="market"
-       :class="{ isMobile: isMobile, isTablet: isTablet, isDesktop: isDesktop }" >
-      <h2 class="border">{{ name }} ({{ place }})</h2>
-      <div
-              v-for="book in books"
-              :key="book.name"
-              class="book"
-      >
-          <a :href="url"><img class="cover" :src="book.coverName" /></a>
-          <div class="detail">
-              <h3><a :href="url">{{ book.name}}</a></h3>
-              <div>
-                  <p class="description">{{ book.description }}</p>
-              </div>
-              <ul
-                      v-for="(chapter, i) in book.chapters"
-                      :key="{ i }" >
-                  <li>Chapter {{ i + 1 }}: {{ chapter.title }} - <a :href="'https://twitter.com/' + chapter.author">@{{ chapter.author }}</a></li>
-              </ul>
-          </div>
-      </div>
-  </div>
+    <div class="market"
+         :class="{ isMobile: isMobile, isTablet: isTablet, isDesktop: isDesktop }">
+        <h2 class="border">{{ name }} ({{ place }})</h2>
+        <div
+                v-for="book in books"
+                :key="book.name"
+                class="book" >
+            <a :href="url"><img class="cover" :src="book.coverName"/></a>
+            <div class="detail">
+                <h3><a :href="url">{{ book.name}}</a></h3>
+                <div>
+                    <p class="description">{{ book.description }}</p>
+                </div>
+                <ul
+                        v-for="(chapter, i) in book.chapters"
+                        :key="i">
+                    <li>Chapter {{ i + 1 }}: {{ chapter.title }} - <a :href="'https://twitter.com/' + chapter.author" class="author">@{{
+                        chapter.author }}</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </template>
 
 <script>
 function isDesktop() {
-    return 768 < window.innerWidth;
+  return 768 < window.innerWidth;
 }
 
 function isTablet() {
-    return 420 < window.innerWidth && window.innerWidth <= 768;
+  return 420 < window.innerWidth && window.innerWidth <= 768;
 }
 
 function isMobile() {
-    return window.innerWidth <= 420;
+  return window.innerWidth <= 420;
 }
 
 export default {
-  name: 'Market',
+  name: "Market",
   props: {
     msg: String
   },
   data() {
-      return {
-          isDesktop: isDesktop(),
-          isTablet:  isTablet(),
-          isMobile: isMobile(),
-          name: "技術書典 5",
-          place: "う11",
-          url: "//techbookfest.org/event/tbf05/circle/26840001",
-          books: [
-              {
-                  name: "Go & Kotlin Playground",
-                  coverName: "go-and-kotlin-playground.png",
-                  description: "Go アプリケーションに関する設計や、Go 製ツールの話、Kotlin のチートシートなど、GCF メンバーそれぞれの知見集です。",
-                  chapters: [
-                      {
-                          title: "gRPC Web Internals",
-                          author: "ktr_0731"
-                      },
-                      {
-                          title: "やはり俺の Go アプリケーション設計はまちがっている。",
-                          author: "ktr_0731"
-                      },
-                      {
-                          title: "My Kotlin Cheat Sheet",
-                          author: "slme_not_found"
-                      }
-                  ]
-              }
+    return {
+      isDesktop: isDesktop(),
+      isTablet: isTablet(),
+      isMobile: isMobile(),
+      name: "技術書典 5",
+      place: "う11",
+      url: "//techbookfest.org/event/tbf05/circle/26840001",
+      books: [
+        {
+          name: "Go & Kotlin Playground",
+          coverName: "go-and-kotlin-playground.png",
+          description:
+            "Go アプリケーションに関する設計や、Go 製ツールの話、Kotlin のチートシートなど、GCF メンバーそれぞれの知見集です。",
+          chapters: [
+            {
+              title: "gRPC Web Internals",
+              author: "ktr_0731"
+            },
+            {
+              title: "やはり俺の Go アプリケーション設計はまちがっている。",
+              author: "ktr_0731"
+            },
+            {
+              title: "My Kotlin Cheat Sheet",
+              author: "slme_not_found"
+            }
           ]
-      }
+        }
+      ]
+    };
   },
-  mounted: function () {
-      this.$nextTick(() => {
-          window.addEventListener('resize', this.handleResize);
-      });
+  mounted: function() {
+    this.$nextTick(() => {
+      window.addEventListener("resize", this.handleResize);
+    });
   },
-  beforeDestroy: function () {
-      window.removeEventListener('resize', this.handleResize);
+  beforeDestroy: function() {
+    window.removeEventListener("resize", this.handleResize);
   },
   methods: {
-    handleResize () {
-        this.isDesktop = isDesktop();
-        this.isTablet = isTablet();
-        this.isMobile = isMobile();
+    handleResize() {
+      this.isDesktop = isDesktop();
+      this.isTablet = isTablet();
+      this.isMobile = isMobile();
     }
   }
-}
+};
 </script>
 
 <style scoped>
-    @font-face {
-        src: url("/fonts/nexa-bold.otf") format("otf"), url("/fonts/nexa-light.otf") format("otf");
-    }
-    a {
-      width: 50%;
-      height: 50%;
-    }
-  .cover {
-      width: 100%;
-      height: 100%;
-  }
+@font-face {
+  src: url("/fonts/nexa-bold.otf") format("otf"),
+    url("/fonts/nexa-light.otf") format("otf");
+}
 
-    .market {
-        padding: 0 13vw;
-        font-family: Helvetica, Arial, sans-serif;
-    }
+a {
+  width: 50%;
+  height: 50%;
+}
 
-    .isDesktop .book {
-        display: flex;
-        align-items: center;
-    }
+.cover {
+  width: 100%;
+  height: 100%;
+}
 
-    .detail {
-        width: 95%;
-        padding-left: 5%;
-        text-align: left;
-    }
+.market {
+  padding: 0 13vw;
+  font-family: Helvetica, Arial, sans-serif;
+}
 
-    .market > h2 {
-        font-size: 1.8rem;
-        color: #333;
-    }
+.isDesktop .book {
+  display: flex;
+  align-items: center;
+}
 
-    .detail > h3 {
-        font-family: "Nexa Bold";
-        font-size: 3rem;
-        color: #232a53;
-    }
+.detail {
+  width: 95%;
+  padding-left: 5%;
+  text-align: left;
+}
 
-    .detail > h3 > a {
-        text-decoration: none;
-        color: inherit;
-    }
+.market > h2 {
+  font-size: 1.8rem;
+  color: #333;
+}
 
-    ul {
-        padding-left: 3%;
-    }
+.detail > h3 {
+  font-family: "Nexa Bold";
+  font-size: 3rem;
+  color: #232a53;
+    transition: all 0.2s;
+}
 
-    li {
-        list-style: none;
-    }
+.detail > h3:hover {
+    color: #5F6A9F;
+}
 
-    .description {
-        margin-bottom: 5%;
-    }
+.detail > h3 > a {
+  text-decoration: none;
+  color: inherit;
+}
 
-    .border {
-        display: flex;
-        align-items: center;
-        text-align: right;
-    }
+ul {
+  padding-left: 3%;
+}
 
-    .isMobile .border {
-        display: block;
-        text-align: center;
-    }
+li {
+  list-style: none;
+}
 
-    .isDesktop .border::before,
-    .isTablet .border::before {
-        border-top: 1px solid #ccc;
-        content: '';
-        flex-grow: 1;
-        margin-right: 1.5rem;
-    }
+.description {
+  margin-bottom: 5%;
+}
 
-    .isTablet .book,
-    .isMobile .book {
-        display: block;
-    }
+.border {
+  display: flex;
+  align-items: center;
+  text-align: right;
+}
 
-    .isTablet .book .cover {
-        width: 60%;
-    }
+.isMobile .border {
+  display: block;
+  text-align: center;
+}
+
+.isDesktop .border::before,
+.isTablet .border::before {
+  border-top: 1px solid #ccc;
+  content: "";
+  flex-grow: 1;
+  margin-right: 1.5rem;
+}
+
+.isTablet .book,
+.isMobile .book {
+  display: block;
+}
+
+.isTablet .book .cover {
+  width: 60%;
+}
+
+.author {
+  font-weight: bold;
+  color: inherit;
+  text-decoration: none;
+  color: #ca3e22;
+  transition: all 0.2s;
+}
+
+.author:hover {
+  color: #852917;
+}
 </style>
