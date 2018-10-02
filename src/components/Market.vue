@@ -1,8 +1,8 @@
 <template>
-  <div class="market">
+  <div class="market"
+       :class="{ isMobile: isMobile, isTablet: isTablet, isDesktop: isDesktop }" >
       <h2 class="border">{{ name }} ({{ place }})</h2>
       <div
-              :class="{ isMobile: isMobile, isTablet: isTablet, isDesktop: isDesktop }"
               v-for="book in books"
               :key="book.name"
               class="book"
@@ -29,11 +29,11 @@ function isDesktop() {
 }
 
 function isTablet() {
-    return 400 < window.innerWidth && window.innerWidth <= 768;
+    return 420 < window.innerWidth && window.innerWidth <= 768;
 }
 
 function isMobile() {
-    return window.innerWidth <= 400;
+    return window.innerWidth <= 420;
 }
 
 export default {
@@ -108,7 +108,7 @@ export default {
         font-family: Helvetica, Arial, sans-serif;
     }
 
-    .isDesktop.book {
+    .isDesktop .book {
         display: flex;
         align-items: center;
     }
@@ -153,22 +153,25 @@ export default {
         text-align: right;
     }
 
-    .border::before {
+    .isMobile .border {
+        display: block;
+        text-align: center;
+    }
+
+    .isDesktop .border::before,
+    .isTablet .border::before {
         border-top: 1px solid #ccc;
         content: '';
         flex-grow: 1;
-    }
-
-    .border::before {
         margin-right: 1.5rem;
     }
 
-    .isTablet.book,
-    .isMobile.book {
+    .isTablet .book,
+    .isMobile .book {
         display: block;
     }
 
-    .isTablet.book .cover {
+    .isTablet .book .cover {
         width: 60%;
     }
 </style>
