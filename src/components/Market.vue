@@ -8,7 +8,7 @@
                 class="book" >
             <a :href="market.url"><img class="cover" :src="book.coverName"/></a>
             <div class="detail">
-                <h3><a :href="url">{{ book.name}}</a></h3>
+                <h3><a :href="market.url">{{ book.name}}</a></h3>
                 <div>
                     <p class="description">{{ book.description }}</p>
                 </div>
@@ -73,48 +73,8 @@ export default {
 a {
   width: 50%;
   height: 50%;
-}
-
-.cover {
-  width: 100%;
-  height: 100%;
-}
-
-.market {
-  padding: 0 13vw;
-  font-family: Helvetica, Arial, sans-serif;
-}
-
-.isDesktop .book {
-  display: flex;
-  align-items: center;
-}
-
-.detail {
-  width: 95%;
-  padding-left: 5%;
-  text-align: left;
-}
-
-.market > h2 {
-  font-size: 1.8rem;
-  color: #333;
-}
-
-.detail > h3 {
-  font-family: "Nexa Bold";
-  font-size: 3rem;
-  color: #232a53;
-  transition: all 0.2s;
-}
-
-.detail > h3:hover {
-  color: #5f6a9f;
-}
-
-.detail > h3 > a {
-  text-decoration: none;
   color: inherit;
+  text-decoration: none;
 }
 
 ul {
@@ -125,8 +85,18 @@ li {
   list-style: none;
 }
 
-.description {
-  margin-bottom: 5%;
+.market {
+  padding: 0 13vw;
+  font-family: Helvetica, Arial, sans-serif;
+}
+.market > h2 {
+  font-size: 1.8rem;
+  color: #333;
+}
+
+.cover {
+  width: 100%;
+  height: 100%;
 }
 
 .border {
@@ -148,6 +118,11 @@ li {
   margin-right: 1.5rem;
 }
 
+.isDesktop .book {
+  display: flex;
+  align-items: center;
+}
+
 .isTablet .book,
 .isMobile .book {
   display: block;
@@ -157,10 +132,29 @@ li {
   width: 60%;
 }
 
+.detail {
+  width: 95%;
+  padding-left: 5%;
+  text-align: left;
+}
+
+.detail > h3 {
+  font-family: "Nexa Bold";
+  font-size: 3rem;
+  color: #232a53;
+  transition: all 0.2s;
+}
+
+.detail > h3:hover {
+  color: #5f6a9f;
+}
+
+.description {
+  margin-bottom: 5%;
+}
+
 .author {
   font-weight: bold;
-  color: inherit;
-  text-decoration: none;
   color: #ca3e22;
   transition: all 0.2s;
 }
